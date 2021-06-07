@@ -1,4 +1,4 @@
-# squadz
+# SQUADZ    
 
 A new Flutter project.
 

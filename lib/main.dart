@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:squadz/ui/screens/counter_screen.dart';
 
 void main() {
-  runApp(const Squadz());
+  runApp(
+    const ProviderScope(
+      child: Squadz(),
+    ),
+  );
 }
 
 class Squadz extends StatelessWidget {

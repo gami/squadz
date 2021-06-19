@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:squadz/ui/screens/counter_screen.dart';
 
@@ -7,9 +8,11 @@ void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     const title = 'test title';
     await tester.pumpWidget(
-      const MaterialApp(
-        home: CounterScreen(
-          title: title,
+      const ProviderScope(
+        child: MaterialApp(
+          home: CounterScreen(
+            title: title,
+          ),
         ),
       ),
     );

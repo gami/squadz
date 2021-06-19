@@ -1,29 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:squadz/entities/counter.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:squadz/controllers/counter_controller.dart';
 
-class CounterScreen extends StatefulWidget {
+class CounterScreen extends ConsumerWidget {
   const CounterScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _CounterScreen createState() => _CounterScreen();
-}
+  Widget build(BuildContext context, ScopedReader watch) {
+    final counterState = watch(counterProvider);
+    final counterController = watch(counterProvider.notifier);
 
-class _CounterScreen extends State<CounterScreen> {
-  Counter _counter = const Counter();
-
-  void _incrementCounter() {
-    setState(() {
-      _counter = _counter.copyWith(current: _counter.current + 1);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Center(
         child: Column(
@@ -33,14 +24,14 @@ class _CounterScreen extends State<CounterScreen> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '${_counter.current}',
+              '${counterState.current}',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: counterController.increment,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

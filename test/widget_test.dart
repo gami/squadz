@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:squadz/main.dart';
 
@@ -14,9 +15,13 @@ void main() {
   testWidgets('Boot main widget', (WidgetTester tester) async {
     const testKey = Key('test');
 
-    await tester.pumpWidget(const Squadz(
-      key: testKey,
-    ));
+    await tester.pumpWidget(
+      const ProviderScope(
+        child: Squadz(
+          key: testKey,
+        ),
+      ),
+    );
 
     expect(find.byKey(testKey), findsOneWidget);
   });

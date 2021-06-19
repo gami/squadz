@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:squadz/entities/counter.dart';
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({Key? key, required this.title}) : super(key: key);
@@ -10,11 +11,11 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreen extends State<CounterScreen> {
-  int _counter = 0;
+  Counter _counter = const Counter();
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      _counter = _counter.copyWith(current: _counter.current + 1);
     });
   }
 
@@ -32,7 +33,7 @@ class _CounterScreen extends State<CounterScreen> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '${_counter.current}',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],

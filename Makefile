@@ -18,4 +18,4 @@ test:
 
 .PHONY: build
 build:
-	$(FLUTTER) pub run build_runner build
+	$(FLUTTER) pub run build_runner build --delete-conflicting-outputs
